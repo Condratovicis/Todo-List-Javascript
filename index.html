@@ -32,16 +32,17 @@
             <i class="fa-solid fa-plus"></i>
          </button>
       </div>
-      <button id="cancel-edit-btn">
-         Cancelar
-      </button>
    </form>
-   <form id="todo-edit_form">
+   <form id="todo-edit_form" class="hide">
       <p>Edite a sua tarefa:</p>
       <div class="todo-form_control">
          <input type="text" id="edit-input_form">
          <button type="submit">
             <i class="fa-solid fa-check-double"></i>
+         </button>
+
+         <button id="cancel-edit-btn">
+            Cancelar
          </button>
       </div>
    </form>
@@ -65,7 +66,7 @@
       </div>
    </div>
    <div id="todo-list">
-      <div class="todo">
+      <div class="todo done">
          <h3>Estou lavando o carro...</h3>
          <button class="finish-todo">
             <i class="fa-solid fa-check"></i>

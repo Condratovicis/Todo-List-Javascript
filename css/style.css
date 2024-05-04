@@ -1,0 +1,138 @@
+/* Geral  */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+*{
+   margin: 0;
+   padding: 0;
+   font-family: "Inter", sans-serif;
+   box-sizing: border-box;
+}
+
+body{
+   background-color: rgb(219, 220, 220);
+}
+
+button{
+   cursor: pointer;
+   padding: 0.3rem 0.5rem;
+   background-color: #CF3520;
+   border-radius: 10px;
+   border: none;
+   color: white;
+   font-size: 1rem;
+   transition: 0.4s;
+}
+
+button:hover{
+   background-color: #ac2b1a;
+}
+
+button i{
+   pointer-events: none;
+}
+
+input, select{
+   padding: .25rem .5rem;
+}
+
+.hide{
+   display: none;
+}
+
+/* Todo Header */
+.todo-container{
+   max-width: 450px;
+   margin: 3rem auto 0;
+   background-color: white;
+   border: 1px solid rgba(61, 61, 61, 0.491);
+   border-radius: 10px;
+   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.263);
+   padding: 2rem;
+}
+
+.todo-container header{
+   text-align: center;
+   padding: 1rem;
+   border-bottom: 1px solid #a29d9c;
+}
+
+/* Todo form */
+#todo-form, #todo-edit_form{
+   padding: 1rem;
+   border-bottom: 1px solid #a29d9c;
+}
+
+#todo-form p, #todo-edit_form p{
+   font-weight: bold;
+   margin-bottom: 2px;
+}
+
+.todo-form_control{
+   display: flex;
+}
+
+.todo-form_control input{
+   margin-right: .4rem;
+}
+
+#cancel-edit-btn{
+   margin-left: .4rem;
+}
+
+/* Tool bar */
+#tool-bar{
+   display: flex;
+   gap: 10px;
+   padding: 1rem;
+   border-bottom: 1px solid #a29d9c;
+}
+
+#tool-bar h4{
+   margin-bottom: .5rem;
+}
+
+#search{
+   border-right: 1px solid #a29d9c;
+   padding-right: .5rem;
+}
+
+#filter{
+   width: 10%;
+}
+
+#filter select{
+   flex: 1;
+}
+
+/* Todo list */
+#todo-list{
+   margin-top: .8rem;
+}
+
+.todo{
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   padding: 1rem;
+   border-bottom: 1px solid #ddd;
+   transition: .3s;
+}
+
+.todo h3{
+   flex: 1;
+}
+
+.todo button{
+   margin-left: .4rem;
+}
+
+/* Todo complete */
+.done{
+   background-color: #e25e05;
+}
+
+.done h3{
+   color: white;
+   text-decoration: line-through;
+   font-style: italic;
+}
