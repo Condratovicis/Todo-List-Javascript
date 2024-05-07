@@ -25,7 +25,7 @@ const saveTodo = (text) => {
    todo.appendChild(doneBtn);
 
    const editBtn = document.createElement("button");
-   doneBtn.classList.add("edit-todo");
+   editBtn.classList.add("edit-todo");
    editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
    todo.appendChild(editBtn);
 
@@ -96,6 +96,8 @@ document.addEventListener("click", (e) => {
 
       editInput.value = todoTitle;
       oldInputValue = todoTitle;
+
+      console.log("Editando...");
    };
 });
 
