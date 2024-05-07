@@ -48,6 +48,7 @@ input, select{
    border-radius: 10px;
    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.263);
    padding: 2rem;
+   margin-bottom: 1rem;
 }
 
 .todo-container header{
