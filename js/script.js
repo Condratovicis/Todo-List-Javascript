@@ -5,6 +5,8 @@ const todoList  =  document.querySelector("#todo-list");
 const editForm =  document.querySelector("#todo-edit_form");
 const editInput =  document.querySelector("#edit-input_form");
 const cancelEditBtn =  document.querySelector("#cancel-edit-btn");
+const searchInput = document.querySelector("#search-input");
+const eraseSearch = document.querySelector("#erase-btn");
 
 let oldInputValue;
 
@@ -37,6 +39,8 @@ const saveTodo = (text) => {
    todoList.appendChild(todo);
    todoInput.value = " ";
    todoInput.focus();
+
+   
 };
 
 const toggleForms = () => {
@@ -59,6 +63,14 @@ const updateTodoTitle = (text) => {
    })
 
 };
+
+const displayTodo = () => {
+   const todos = document.querySelectorAll(".todo");
+
+   todos.forEach((todo) => {
+      todo.style.display = "flex"
+   });
+}
 
 // Eventos 
 
@@ -97,7 +109,7 @@ document.addEventListener("click", (e) => {
       editInput.value = todoTitle;
       oldInputValue = todoTitle;
 
-      console.log("Editando...");
+      // console.log("Editando...");
    };
 });
 
@@ -119,4 +131,33 @@ editForm.addEventListener("submit", (e) => {
 
    toggleForms();
 
+});
+
+
+// Search
+searchInput.addEventListener("input", () => {
+   const todos = document.querySelectorAll(".todo");
+
+   if(searchInput.value != ""){
+      todos.forEach((todo) => {
+         let title = todo.querySelector("h3");
+         title = title.textContent.toLowerCase();
+
+         let filter = searchInput.value;
+         filter = filter.toLowerCase();
+
+         if(!title.includes(filter)){
+            todo.style.display = "none";
+         }else{
+            todo.style.display = "flex";
+         };
+      });
+   };
+});
+
+eraseSearch.addEventListener("click", (e) => {
+   e.preventDefault();
+
+   searchInput.value = "";
+   displayTodo();
 });
