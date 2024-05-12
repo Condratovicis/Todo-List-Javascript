@@ -11,16 +11,20 @@ const eraseSearch = document.querySelector("#erase-btn");
 let oldInputValue;
 
 // LocalStorage 'Banco de dados'
-let data = [{titulo:"teste"}];
+let data = [];
 
 const getData = () => JSON.parse(localStorage.getItem("todoList")) ?? [];
 
 const setdata = (data) => localStorage.setItem('todoList', JSON.stringify(data));
+
+data = getData();
+
 // Funções
 
-const saveTodo = (text) => {
+const saveTodo = (text,stats, indice) => {
    const todo = document.createElement("div");
    todo.classList.add("todo");
+   todo.setAttribute("data-indice",indice);
 
    const todoTitle = document.createElement("h3");
    todoTitle.innerText = text;
@@ -44,15 +48,17 @@ const saveTodo = (text) => {
    todoList.appendChild(todo);
    todoInput.focus();
 
+   if(stats === "done"){
+      todo.classList.add("done");
+   };
+
    todoInput.value = " ";
 };
 
 updateScreen = () => {
-   const data = getData();
-
-   data.forEach((task) => {
-      saveTodo(task.tarefa);
-   }) 
+   data.forEach((task, id) => {
+      saveTodo(task.tarefa,task.status, id);
+   });
 };
 
 const toggleForms = () => {
@@ -80,7 +86,7 @@ const displayTodo = () => {
    const todos = document.querySelectorAll(".todo");
 
    todos.forEach((todo) => {
-      todo.style.display = "flex"
+      todo.style.display = "flex";
    });
 }
 
@@ -94,16 +100,16 @@ todoForm.addEventListener("submit", (e) => {
    if(inputValue){
       saveTodo(inputValue);
 
-      data = getData();
-      data.push({tarefa: inputValue, status: "todo"});
+      data.push({tarefa: inputValue, status: " "});
       setdata(data);
    }
 });
 
 document.addEventListener("click", (e) => {
-
    const targetEl = e.target;
    const parentEl = targetEl.closest("div");
+   const indice = parentEl.dataset.indice;
+
    let todoTitle;
 
    if(parentEl && parentEl.querySelector("h3")){
@@ -111,12 +117,21 @@ document.addEventListener("click", (e) => {
    }
 
    if(targetEl.classList.contains("finish-todo")){
-      // console.log("click".repeat(2));
       parentEl.classList.toggle("done");
+
+      if(parentEl.classList.contains("done")){
+         data[indice].status = "done";
+         setdata(data);
+      }else{
+         data[indice].status = "";
+         setdata(data);
+      }
    };
 
    if(targetEl.classList.contains("remove-todo")){
       parentEl.remove();
+      data.splice(indice, 1);
+      setdata(data);
    };
 
    if(targetEl.classList.contains("edit-todo")){
@@ -124,8 +139,6 @@ document.addEventListener("click", (e) => {
 
       editInput.value = todoTitle;
       oldInputValue = todoTitle;
-
-      // console.log("Editando...");
    };
 });
 
@@ -178,4 +191,4 @@ eraseSearch.addEventListener("click", (e) => {
    displayTodo();
 });
 
-updateScreen()
+updateScreen();
