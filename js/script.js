@@ -10,10 +10,15 @@ const eraseSearch = document.querySelector("#erase-btn");
 
 let oldInputValue;
 
+// LocalStorage 'Banco de dados'
+let data = [{titulo:"teste"}];
+
+const getData = () => JSON.parse(localStorage.getItem("todoList")) ?? [];
+
+const setdata = (data) => localStorage.setItem('todoList', JSON.stringify(data));
 // Funções
 
 const saveTodo = (text) => {
-
    const todo = document.createElement("div");
    todo.classList.add("todo");
 
@@ -37,10 +42,17 @@ const saveTodo = (text) => {
    todo.appendChild(removeBtn);
 
    todoList.appendChild(todo);
-   todoInput.value = " ";
    todoInput.focus();
 
-   
+   todoInput.value = " ";
+};
+
+updateScreen = () => {
+   const data = getData();
+
+   data.forEach((task) => {
+      saveTodo(task.tarefa);
+   }) 
 };
 
 const toggleForms = () => {
@@ -81,6 +93,10 @@ todoForm.addEventListener("submit", (e) => {
 
    if(inputValue){
       saveTodo(inputValue);
+
+      data = getData();
+      data.push({tarefa: inputValue, status: "todo"});
+      setdata(data);
    }
 });
 
@@ -161,3 +177,5 @@ eraseSearch.addEventListener("click", (e) => {
    searchInput.value = "";
    displayTodo();
 });
+
+updateScreen()
