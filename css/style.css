@@ -39,6 +39,16 @@ input, select{
    display: none;
 }
 
+/* Header */
+header{
+   text-align: center;
+   margin-top: 10px;
+}
+
+header p{
+   font-size: 1.4rem;
+}
+
 /* Todo Header */
 .todo-container{
    max-width: 450px;
